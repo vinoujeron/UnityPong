@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class gameBehaviour : MonoBehaviour
+public class GameBehaviour : MonoBehaviour
 {
-    public static string gameState;
+    public static string GameState = "idle";
+
+    public float playerSpeed = 200f;
     // Start is called before the first frame update
     void Start()
     {
-        gameState = "idle";
+        GameState = "idle";
     }
 
     // Update is called once per frame

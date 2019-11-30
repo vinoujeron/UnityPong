@@ -1,29 +1,29 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using static GameBehaviour;
+﻿using UnityEngine;
+using static GameManager;
 
 public class BallBehaviour : MonoBehaviour
 {
-    public float ballSpeed = 0.15f;
+    public float ballSpeed = 0.75f;
     private float _ballDx = 0f;
     private float _ballDy = 0f;
 
     private Vector2 _startBallPosition;
-    // Start is called before the first frame update
+    private GameObject _player1;
+    private GameObject _player2;
+
     void Start()
     {
-        GameBehaviour gameBehaviour = GetComponent<GameBehaviour>();
+        _player1 = GameObject.FindWithTag("Player1");
+        _player2 = GameObject.FindWithTag("Player2");
         _startBallPosition = transform.position;
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("return") && GameBehaviour.GameState == "idle")
+        if (Input.GetKeyDown("return") || GameManager.GameState == "idle") // || statement for testing purpose, && is the final version
         {
-            GameBehaviour.GameState = "play";
+            GameManager.GameState = "play";
             Ball_Reset();
         } 
 
@@ -36,7 +36,45 @@ public class BallBehaviour : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (GameBehaviour.GameState == "play")
+        if (Ball_Collides(_player1))
+        {
+            _ballDx = -_ballDx * 1.1f;
+
+            if (_ballDy < 0)
+                _ballDy = -Random.Range(10, 150);
+            else
+                _ballDy = Random.Range(10, 150);
+        }
+        
+        if (Ball_Collides(_player2))
+        {
+            _ballDx = -_ballDx * 1.1f;
+            
+            if (_ballDy < 0)
+                _ballDy = -Random.Range(10, 150); // Randomise rebounce from players
+            else
+                _ballDy = Random.Range(10, 150);  // same
+        }
+
+        if (transform.position.y >= GAME_SCREEN_UP)
+        {
+            Vector3 temp = transform.position;
+            temp.y = GAME_SCREEN_UP;
+            transform.position = temp;
+            
+            _ballDy = -_ballDy;
+        }
+        
+        if (transform.position.y <= GAME_SCREEN_DOWN + BALL_RADIUS)
+        {
+            Vector3 temp = transform.position;
+            temp.y = GAME_SCREEN_DOWN + BALL_RADIUS;
+            transform.position = temp;
+            
+            _ballDy = -_ballDy;
+        }
+        
+        if (GameManager.GameState == "play")
         {
             Ball_Update();
         }
@@ -57,5 +95,21 @@ public class BallBehaviour : MonoBehaviour
         newBallPosition.y += (_ballDy * Time.fixedDeltaTime) * ballSpeed;
 
         transform.position = newBallPosition;
+    }
+
+    bool Ball_Collides(GameObject player)
+    {
+        Vector2 playerPosition = player.transform.position;        
+        if (transform.position.x > playerPosition.x + PLAYER_WIDTH || transform.position.x + BALL_RADIUS < playerPosition.x)
+        {
+            return false;
+        }
+
+        if (transform.position.y - BALL_RADIUS > playerPosition.y || transform.position.y < playerPosition.y - PLAYER_HEIGHT)
+        {
+            return false;
+        }
+        
+        return true;
     }
 }

@@ -5,6 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
     public static string GameState = "idle";
+    public static bool IsSecondPlayerAI = false;
+    public static float difficultyVariable = 35f;
     
     public static float GAME_SCREEN_UP = 0f;
     public static float GAME_SCREEN_DOWN = 0f;

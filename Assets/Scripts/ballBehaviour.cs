@@ -156,7 +156,7 @@ public class BallBehaviour : MonoBehaviour
 
     void CheckForGoal()
     {
-        if (GameManager.player1Score < 2 && GameManager.player2Score < 2)
+        if (GameManager.player1Score < 7 && GameManager.player2Score < 7)
         {
             if (transform.position.x >= GameManager.GAME_SCREEN_RIGHT)
             {
@@ -164,7 +164,7 @@ public class BallBehaviour : MonoBehaviour
                 player1ScoreText.text = GameManager.player1Score.ToString();
                 
                 // Move ball from border for not to trigger winning instruction 
-                transform.position += new Vector3(-3, 0, 0);
+                transform.position += new Vector3(-7f, 0, 0);
                 
                 _player1Scored = true;
                 GameManager.GameState = "Scored";
@@ -176,7 +176,7 @@ public class BallBehaviour : MonoBehaviour
                 player2ScoreText.text = GameManager.player2Score.ToString();
                 
                 // Move ball from border for not to trigger winning instruction 
-                transform.position += new Vector3(3, 0, 0);
+                transform.position += new Vector3(3f, 0, 0);
 
                 _player1Scored = false;
                 GameManager.GameState = "Scored";

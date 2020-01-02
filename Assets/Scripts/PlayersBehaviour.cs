@@ -1,14 +1,14 @@
 ﻿using UnityEngine;
 using static GameManager;
 
+
 public class PlayersBehaviour : MonoBehaviour
 {
+    public BallBehaviour ball;
     private float _player1Dy;
     private float _player2Dy;
 
     private float _playerSpeed = 15f;
-    
-    
 
     private GameObject _player1;
     private GameObject _player2;
@@ -34,16 +34,32 @@ public class PlayersBehaviour : MonoBehaviour
         else
             _player1Dy = 0;
         
-        if (Input.GetKey("up"))
-        {
-            _player2Dy = _playerSpeed;
+        if (!IsSecondPlayerAI) {
+            if (Input.GetKey("up"))
+            {
+                _player2Dy = _playerSpeed;
+            }
+            else if (Input.GetKey("down"))
+            {
+                _player2Dy = -_playerSpeed;
+            }
+            else
+                _player2Dy = 0;
+                
         }
-        else if (Input.GetKey("down"))
+        else if (IsSecondPlayerAI)
         {
-            _player2Dy = -_playerSpeed;
+            if (transform.position.y < GAME_SCREEN_UP - 10f && transform.position.y > GAME_SCREEN_DOWN + 10f) // TO FIX THAT PLAYER GOES DOWN THE SCREEN
+            {
+                Vector3 ballPosition = transform.position;
+                Vector3 newPosition = new Vector3(155, 0, 0);
+                newPosition.y = (Mathf.Sin(ballPosition.y / 25f) * difficultyVariable) + ballPosition.y + 10f;
+                _player2.transform.position = newPosition;
+            }
+            //else if (_player2.transform.position.y < GAME_SCREEN_DOWN + 20f)
+                //_player2.transform.position = new Vector3(_player2.transform.position.x, GAME_SCREEN_DOWN + 15f, _player2.transform.position.z);
+            
         }
-        else
-            _player2Dy = 0;
     }
 
     void FixedUpdate()

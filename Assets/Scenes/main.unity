@@ -369,6 +369,172 @@ MonoBehaviour:
   m_EffectColor: {r: 0.745283, g: 0, b: 0, a: 0.54509807}
   m_EffectDistance: {x: -9.8, y: 3.46}
   m_UseGraphicAlpha: 1
+--- !u!1 &1080502048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1080502051}
+  - component: {fileID: 1080502050}
+  - component: {fileID: 1080502049}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1080502049
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080502048}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 95f1c5bae85bd2e46b3bc3e5754e7434, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.2
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1080502050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080502048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b7ef0f61ba9b0341948cf3c0b11f52d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioClips:
+  - {fileID: 8300000, guid: 5ad2c6b25bb13c146930e51dade3da10, type: 3}
+  - {fileID: 8300000, guid: 335491e98c4cba04b94b70184fcbbf55, type: 3}
+  - {fileID: 8300000, guid: 26274c56f8e77b648974c99d9b36f330, type: 3}
+  - {fileID: 8300000, guid: 843bee01cec773b44980b7257d59dfae, type: 3}
+  - {fileID: 8300000, guid: 5208e770c89190a48a5f4f457058f520, type: 3}
+  - {fileID: 8300000, guid: 9a4a3ba4114f4a846ad292c979b7402d, type: 3}
+  - {fileID: 8300000, guid: cc50bb857f457f043b18dd11bcca106d, type: 3}
+  - {fileID: 8300000, guid: 95f1c5bae85bd2e46b3bc3e5754e7434, type: 3}
+  sounds:
+  - name: BorderHit
+    clip: {fileID: 8300000, guid: 3dc1dc1a3d77e6c42b463e526beee043, type: 3}
+    volume: 0.2
+    source: {fileID: 0}
+  - name: PlayerHit
+    clip: {fileID: 8300000, guid: 4cc3c16d82480b446bc389c16a26d9f4, type: 3}
+    volume: 0.2
+    source: {fileID: 0}
+  - name: WinAGoal
+    clip: {fileID: 8300000, guid: 16aa578355e288e45a1809dff995d258, type: 3}
+    volume: 1
+    source: {fileID: 0}
+  - name: WinAGame
+    clip: {fileID: 8300000, guid: 0c85d1fad4e501849af069cb2533898a, type: 3}
+    volume: 0.75
+    source: {fileID: 0}
+--- !u!4 &1080502051
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080502048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 539.3192, y: 370.6401, z: -6636.841}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1115250805
 GameObject:
   m_ObjectHideFlags: 0

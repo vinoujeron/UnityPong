@@ -42,16 +42,18 @@ public class BallBehaviour : MonoBehaviour
             GameManager.GameState = "idle";
         }
 
-        if (GameManager.GameState == "Scored")
+        if (GameManager.GameState == "Scored" && GameManager.player1Score < 7 && GameManager.player2Score < 7)
         {
             GameManager.GameState = "idle";
             GameManager.mainText.text = _player1Scored ? "Player 1 scored! \n Press \"Enter\" to continue" : "Player 2 scored! \n Press \"Enter\" to continue";
+            AudioManager.instance.Play("WinAGoal");
         }
         
         if (GameManager.GameState == "Victory")
         {
+            
             GameManager.mainText.text = GameManager.player1Score > GameManager.player2Score ?
-                "Player 1 has won! \n Press \"Enter\" to continue!" : "Player  2 has won! \n Press \"Enter\" to continue!"; 
+                "Player 1 has won! \n Press \"Enter\" to continue!" : "Player  2 has won! \n Press \"Enter\" to continue!";
         }
 
         if (GameManager.GameState == "Victory" && Input.GetKeyDown("return"))
@@ -62,7 +64,7 @@ public class BallBehaviour : MonoBehaviour
 
         if (Input.GetKey("escape"))
         {
-            Application.Quit();         // Don`t sure that it works, don`t know how to test, ONLY after building
+            Application.Quit();         
         }
         
         CheckForGoal();
@@ -101,6 +103,7 @@ public class BallBehaviour : MonoBehaviour
             transform.position = temp;
             
             _ballDy = -_ballDy;
+            AudioManager.instance.Play("BorderHit");
         }
         
         if (transform.position.y <= GameManager.GAME_SCREEN_DOWN + GameManager.BALL_RADIUS)
@@ -110,6 +113,7 @@ public class BallBehaviour : MonoBehaviour
             transform.position = temp;
             
             _ballDy = -_ballDy;
+            AudioManager.instance.Play("BorderHit");
         }
         
         if (GameManager.GameState == "play")
@@ -151,6 +155,7 @@ public class BallBehaviour : MonoBehaviour
             return false;
         }
         
+        AudioManager.instance.Play("PlayerHit");
         return true;
     }
 
@@ -182,8 +187,10 @@ public class BallBehaviour : MonoBehaviour
                 GameManager.GameState = "Scored";
             }
         }
-        else
+        else if(GameManager.GameState != "Victory")
+        {
+            AudioManager.instance.Play("WinAGame");
             GameManager.GameState = "Victory";
-            
+        }
     }
 }
